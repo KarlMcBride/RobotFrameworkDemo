@@ -3,6 +3,8 @@ Library  python_keywords.py
 
 
 # Note - keyword files should not contain tests!
+#      - if a keyword is used in a single test file, it's okay to have it in the test file
+#      - if a keyword is used in more than one file, put it into a keywords robot file
 
 
 *** Keywords ***
@@ -19,11 +21,3 @@ Basic Python Multiplier Keyword
     ${result} =  Multiply Numbers  4  3
     Log  Result: ${result}  console=true
     Should Be Equal As Numbers  12  ${result}
-
-
-Dodgy Python Keyword
-    [Documentation]  Calls 'dodgy_number_echoer', and will deliberately fail
-    ...  when passed 2.
-    [Arguments]  ${input}
-    ${result} =  Dodgy Number Echoer  ${input}
-    Should Be Equal  ${input}  ${result}  Got ${result} when expecting ${input}  values=false
