@@ -1,3 +1,7 @@
+# Directoies to be ignored
+logs
+__pycache__
+
 # File extensions to be ignored
 *.html
 *.xml
