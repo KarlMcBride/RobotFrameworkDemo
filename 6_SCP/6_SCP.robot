@@ -1,40 +1,32 @@
 # Source: https://github.com/robotframework/SSHLibrary/blob/master/atest/put_file.robot
 
 *** Settings ***
-Force Tags      pybot   jybot
-Resource        sftp.robot
+Library         DateTime
+Library         OperatingSystem
+Library         String
+
+Resource        ssh_lib.robot
+
 Suite Setup     Login As Valid User
 Suite Teardown  Close All Connections
-Library         OperatingSystem  WITH NAME  OS
-Library         String
+
+*** Variables ***
+${SCP_FILE_NAME}    time_stamp.txt
+${SCP_FILE_LOC}     ${EXECDIR}/logs/${SCP_FILE_NAME}
 
 *** Test Cases ***
 Put File To Home Directory
-    SSH.File Should Not Exist  ${FILE WITH NON-ASCII NAME}
-    Put File  ${FILE WITH NON-ASCII}  /tmp/foo.txt
-    SSH.File Should Exist  /tmp/foo.txt
-    [Teardown]  Execute Command  rm -f /tmp/foo.txt
+    [Documentation]  Copies a timestamped file to remote
+    ...  cat's and logs its contents, then deletes the file.
+    ${current_date} =  Get Current Date
+    Create File  ${SCP_FILE_LOC}  ${current_date}
+    SSH.File Should Not Exist  ${SCP_FILE_NAME}
+    Put File  ${SCP_FILE_LOC}  .
+    SSH.File Should Exist  ./${SCP_FILE_NAME}
+    ${file_contents}=         Execute Command    cat ./${SCP_FILE_NAME}
+    Log  File [${SCP_FILE_NAME}] contains [${file_contents}]  console=true
+    [Teardown]  Execute Command  rm -f ./${SCP_FILE_NAME}
 
 Put File Should Fail When There Are No Source Files
     Run Keyword And Expect Error  There are no source files matching 'nonexisting'.
     ...                           SSH.Put File  nonexisting
-
-*** Keywords ***
-Change User And Overwrite File
-    Open Connection  ${HOST}  prompt=${PROMPT}
-    Login With Public Key  ${KEY USERNAME}  ${KEY}
-    Put File  ${LOCAL TEXTFILES}${/}${TEST FILE NAME}  ${REMOTE HOME TEST}
-    [Teardown]  Close Connection
-
-Add testkey User To Group test And Set Permissions
-    Execute Command  usermod -a -G test testkey  sudo=True  sudo_password=test
-    Execute Command  chmod -R 660 ${TEST FILE NAME}
-
-Remove testkey User From Group test And Cleanup
-    Execute Command  gpasswd -d testkey test  sudo=True  sudo_password=test
-    Execute Command  rm -rf ${TEST FILE NAME}
-
-Remove Local Temp Dir And Remote File
-    [Arguments]  ${path}
-    Remove Directory  ${LOCAL TMPDIR}  yes
-    Execute Command  rm -f ${path}
