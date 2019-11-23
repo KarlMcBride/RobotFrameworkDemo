@@ -1,3 +1,4 @@
 #!/bin/bash
 
-pip3 install robotframework
+pip install robotframework
+pip install robotframework-sshlibrary
