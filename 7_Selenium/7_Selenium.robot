@@ -4,7 +4,7 @@ Library             SeleniumLibrary
 
 *** Variables ***
 ${DUCKDUCKGO URL}   https://duckduckgo.com/
-${BROWSER}          Chrome
+${BROWSER}          Firefox
 
 
 *** Keywords ***
