@@ -22,11 +22,11 @@ pipeline
         {
             steps
             {
-                robot logFileName: '*log.html',
-                    onlyCritical: false,
-                    outputFileName: '*output.xml',
+                robot logFileName: 'log.html',
+                    onlyCritical: true,
+                    outputFileName: 'output.xml',
                     outputPath: 'robot_logs',
-                    reportFileName: '*report.html',
+                    reportFileName: 'report.html',
                     passThreshold: 100.0,
                     unstableThreshold: 90.0
             }

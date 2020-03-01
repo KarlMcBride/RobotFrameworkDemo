@@ -18,6 +18,7 @@ Basic Passing Arithmetic Test
 
 Basic Failing Arithmetic Test
     [Documentation]  Basic test demonstrating how a fail looks
+    [Tags]  expected_failure
     ${result}=  Evaluate  2+2
     Log  Result: [${result}]  console=true
     Should Be Equal As Numbers  3  ${result}

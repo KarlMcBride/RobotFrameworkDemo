@@ -1,6 +1,8 @@
 *** Settings ***
 Library  python_keywords.py
 
+Force Tags  expected_failure
+
 
 *** Keywords ***
 Dodgy Python Keyword

@@ -37,6 +37,7 @@ Keyword With Local Teardown
 Failing Test
     [Documentation]  Example failing test to demonstrate
     ...  test teardown running afterwards.
+    [Tags]  expected_failure
     Fail  Deliberately Failing Test
 
 
@@ -53,11 +54,13 @@ Test Calling Keyword With Local Teardown
 
 
 Test That Will Fail Due To Setup Timeout
+    [Tags]  expected_failure
     Sleep  10
 
 
 Test That Will Fail Due To Local Timeout
     [Documentation]  Demonstrating local test timeout, that overrides
     ...  the suite-level "Test Timeout"
+    [Tags]  expected_failure
     [Timeout]  2 Seconds
     Sleep  10
