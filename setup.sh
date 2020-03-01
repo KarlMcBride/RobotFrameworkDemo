@@ -19,13 +19,3 @@ else
 fi
 
 sudo webdrivermanager firefox chrome --linkpath /usr/local/bin
-
-
-##### SELENIUM #####
-
-# SELENIUM_PACKAGES="unzip xvfb libxi6 libgconf-2-4"
-#
-# sudo apt-get install -y $SELENIUM_PACKAGES
-
-
-##### CHROMEDRIVER #####
