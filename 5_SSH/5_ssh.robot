@@ -12,9 +12,9 @@ Suite Setup            Open Connection And Log In
 Suite Teardown         Close All Connections
 
 *** Variables ***
-${HOST}                192.168.1.134
+${HOST}                192.168.1.164
 ${USERNAME}            pi
-${PASSWORD}            42
+${PASSWORD}            Flirc_42
 
 *** Test Cases ***
 Execute Command And Verify Output

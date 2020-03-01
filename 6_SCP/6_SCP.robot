@@ -20,6 +20,7 @@ Put File To Home Directory
     ...  cat's and logs its contents, then deletes the file.
     ${current_date} =  Get Current Date
     Create File  ${SCP_FILE_LOC}  ${current_date}
+    Log  SCP_FILE_LOC: [ ${SCP_FILE_LOC} ]
     SSH.File Should Not Exist  ${SCP_FILE_NAME}
     Put File  ${SCP_FILE_LOC}  .
     SSH.File Should Exist  ./${SCP_FILE_NAME}
