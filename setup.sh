@@ -18,7 +18,7 @@ else
     pip3 install --user $ROBOT_PACKAGES $SELENIUM_PACKAGES
 fi
 
-webdrivermanager firefox chrome --linkpath /usr/local/bin
+sudo webdrivermanager firefox chrome --linkpath /usr/local/bin
 
 
 ##### SELENIUM #####
