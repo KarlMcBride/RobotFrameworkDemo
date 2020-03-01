@@ -4,7 +4,7 @@
 
 echo "$(whoami)"
 
-sudo apt-get install -y python3-pip
+sudo apt-get install -y python3-pip jq
 
 ROBOT_PACKAGES="robotframework robotframework-sshlibrary robotframework-selenium2library"
 SELENIUM_PACKAGES="webdrivermanager"
