@@ -4,5 +4,7 @@ __pycache__
 
 # File extensions to be ignored
 *.html
+*.log
+*.png
 *.pyc
 *.xml
